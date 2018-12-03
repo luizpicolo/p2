@@ -10,9 +10,9 @@ namespace cg
 {
 	namespace vis
 	{
-		DataTableReader::DataTableReader(const std::wstring &_pathname)
+		void DataTableReader::setFilename(const std::wstring &pathname_)
 		{
-			pathname = _pathname;
+			pathname = pathname_;
 		}
 
 		double parseStringToDouble(string value) {
@@ -32,7 +32,7 @@ namespace cg
 			string line, formatFile, buffer;
 			int length, dimension;
 			double bufferDouble;
-			ifstream dataFile(this->pathname);
+			ifstream dataFile(pathname);
 
 			if (!dataFile.is_open())
 				cout << "Error: Unable to open file\n";
