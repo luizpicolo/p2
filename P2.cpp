@@ -15,22 +15,22 @@ P2::initialize()
     GLRenderWindow::initialize();
 
     auto reader = DataTableReader::New();
-    // projection = ProjectionFilter::New();
-    //auto writer = PointWriter::New();
+    auto projection = ProjectionFilter::New();
+    auto writer = DataTableWriter::New();
 
 	reader->setFilename((char*)"C:\\cpp\\caltech.data-NORM.data");
 	//reader->update();
-    //projection->setInputConnection(reader->outputPort());
-    //writer->setFilename(...);
-    //->setInputConnection(projection->outputPort());
-    //writer->write();
+    projection->setInputConnection(reader->outputPort());
+    writer->setFilename(...);
+    writer->setInputConnection(projection->outputPort());
+    writer->write();
 
-    //auto pointToPolyFilter = PointSetToPolyData::New();
-    //auto polyMapper = GLPolyDataMapper::New();
+    auto pointToPolyFilter = DataTableToPolyData::New();
+    auto polyMapper = GLPolyDataMapper::New();
 
-    //pointToPolyFilter->setInputConnection(projection->outputPort());
-    //polyMapper->setInputConnection(pointToPolyFilter->outputPort());
-    //scene()->addActor(new Actor{polyMapper});
+    pointToPolyFilter->setInputConnection(projection->outputPort());
+    polyMapper->setInputConnection(pointToPolyFilter->outputPort());
+    scene()->addActor(new Actor{polyMapper});
   }
   catch (const std::exception& e)
   {
