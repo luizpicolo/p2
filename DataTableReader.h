@@ -3,22 +3,23 @@
 #include <string>
 #include <vector>
 #include <any>
+#include "Source.h"
+#include "DataTable.h"
 
 namespace cg
 {
 	namespace vis
 	{
-		class DataTableReader : public AbstractSource<DataTable*>
+		class DataTableReader : public Source<DataTable*>
 		{
 			public:
 				DataTableReader(const std::wstring &pathname);
+				//double parseStringToDouble(string value);
 				void execute() override;
 
 			private:
 				std::wstring pathname;
-				static void error(const std::wstring &message, std::vector<std::any> &args);
-				static int parseInt(const std::wstring &s);
-				static double parseDouble(const std::wstring &s);
+				//static double parseStringToDouble(const std::wstring &s);
 		};
 	}
 }
