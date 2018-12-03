@@ -18,7 +18,8 @@ P2::initialize()
     // projection = ProjectionFilter::New();
     //auto writer = PointWriter::New();
 
-    reader->setFilename((char*)"C:\\cpp\\caltech.data-NORM.data")
+	reader->setFilename((char*)"C:\\cpp\\caltech.data-NORM.data");
+	reader->update();
     //projection->setInputConnection(reader->outputPort());
     //writer->setFilename(...);
     //->setInputConnection(projection->outputPort());

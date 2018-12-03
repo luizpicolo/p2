@@ -55,11 +55,8 @@ namespace cg
 			getline(dataFile, buffer);
 			getline(dataFile, buffer);
 
-			//TODO: Atualizar com as funçoes do EIGIN e da classe DataTable não implementada até o momento
-			/*
-				data = new Array2DRowRealMatrix(length, dimension);
-			DataTable table = new DataTable(data);
-			*/
+			Eigen::MatrixXf data = Eigen::MatrixXf::Zero(length, dimension);
+			auto table = new DataTable(data);
 
 			for (int i = 0; i < length; i++) {
 				cout << endl;
@@ -76,7 +73,7 @@ namespace cg
 					cout << " buffer=" << bufferDouble;
 
 					// TODO:Função Datable não implementada ainda
-					// data.setEntry(i, j, bufferDouble);
+					table->setEntry(i, j, bufferDouble);
 				}
 
 				// Pega o LABEL da linha usando ; como separador e adiciona ao vetor de labels convertido para double
@@ -87,10 +84,12 @@ namespace cg
 			}
 
 			//TODO: Atualizar com as funçoes da classe DataTable não implementada até o momento
-			//table.setRowIds(ids);
-			//table.setRowLabels(labels);
+			table->setRowIds(ids);
+			table->setRowLabels(labels);
 
 			dataFile.close();
+
+			setOutput(table);
 		}
 	}
 }

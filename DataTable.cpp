@@ -7,17 +7,21 @@ namespace cg
 	{
 		int DataTable::count = 0;
 
-		DataTable::DataTable(Eigen::Matrix2cd *data)
+		DataTable::DataTable(Eigen::MatrixXf data_)
 		{
-			DataTable(L"Data Table " + ++count, data);
+			//DataTable(L"Data Table " + ++count, data);
+			length = data_.rows(); // Metodo da biblioteca
+			dimension = data_.cols();  // Metodo da biblioteca
+			this->data = data_;
 		}
 
-		DataTable::DataTable(const std::wstring &name_, Eigen::Matrix2cd *data_)
+		DataTable::DataTable(const std::wstring &name_, Eigen::MatrixXf data_)
 		{
 			name = name_;
-			length = data->getRowDimension(); // Metodo da biblioteca
-			dimension = data->getColumnDimension();  // Metodo da biblioteca
-			data = data_;
+			length = data_.rows(); // Metodo da biblioteca
+			dimension = data_.cols();  // Metodo da biblioteca
+			//this->data = Eigen::MatrixXf::Zero(length, dimension);
+			this->data = data_;
 		}
 
 		int DataTable::getLength()
@@ -30,7 +34,7 @@ namespace cg
 		  return dimension;
 		}
 
-		Eigen::Matrix2cd *DataTable::getData()
+		Eigen::MatrixXf DataTable::getData()
 		{
 		  return data;
 		}
@@ -40,9 +44,9 @@ namespace cg
 		  return name;
 		}
 
-		std::vector<double> DataTable::getRow(int i)
+		Eigen::VectorXf DataTable::getRow(int i)
 		{
-		  return data->getRow(i);  // Metodo da biblioteca
+		  return data.row(i);  // Metodo da biblioteca
 		}
 
 		std::vector<std::wstring> DataTable::getColumnNames()
@@ -72,7 +76,7 @@ namespace cg
 		  this->columnNames = columnNames;
 		}
 
-		std::vector<std::wstring> DataTable::getRowIds()
+		std::vector<std::string> DataTable::getRowIds()
 		{
 		  return rowIds;
 		}
@@ -81,16 +85,16 @@ namespace cg
 		{
 		  if (rowIds.empty())
 		  {
-			rowIds = std::vector<std::wstring>(length);
+			rowIds = std::vector<std::string>(length);
 		  }
 
 		  for (int i = 0; i < length; i++)
 		  {
-			rowIds[i] = std::to_wstring(i + 1);
+			rowIds[i] = std::to_string(i + 1);
 		  }
 		}
 
-		void DataTable::setRowIds(std::vector<std::wstring> &rowIds)
+		void DataTable::setRowIds(std::vector<std::string> &rowIds)
 		{
 		  if (rowIds.size() > 0 && rowIds.size() != length)
 		  {
@@ -124,6 +128,17 @@ namespace cg
 			puts("Row labels' dimension mismatch");
 		  }
 		  this->rowLabels = rowLabels;
+		}
+
+		void DataTable::setEntry(int i, int j, double d)
+		{
+			//data.row(i)(j) = (float) d;
+			data(i, j) = (float) d;
+		}
+
+		float DataTable::getEntry(int i, int j)
+		{
+			return data(i, j);
 		}
 	}
 }

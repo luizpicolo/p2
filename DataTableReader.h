@@ -10,18 +10,18 @@ namespace cg
 {
 	namespace vis
 	{
-		class DataTableReader : public Source<DataTable*>
+		class DataTableReader : public Source<DataTable>
 		{
 			public:
-				char* pathname;
 				void setFilename(char* pathname);
-				void execute() override;
 				static Reference<DataTableReader> New()
 				{
 					return new DataTableReader;
 				}
 
 			private:
+				char* pathname;
+				void execute() override;
 		};
 	}
 }

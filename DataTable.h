@@ -3,64 +3,60 @@
 #include <string>
 #include <vector>
 #include "Eigen/Core" 
+#include "DataSet.h"
 
 namespace cg
 {
 	namespace vis
 	{
-		class DataTable
+		class DataTable : public DataSet
 		{
+		  private:
+			  std::wstring name;
+			  int length;
+			  int dimension;
+			  Eigen::MatrixXf data;
+			  std::vector<std::wstring> columnNames;
+			  std::vector<std::string> rowIds;
+			  std::vector<double> rowLabels;
 
-	  private:
-		  std::wstring name;
-		  int length;
-		  int dimension;
-		  Eigen::Matrix2cd *data;
-		  std::vector<std::wstring> columnNames;
-		  std::vector<std::wstring> rowIds;
-		  std::vector<double> rowLabels;
+			  static int count;
 
-		  static int count;
+		  public:
+			  DataTable(Eigen::MatrixXf data);
 
-	  public:
-		  virtual ~DataTable()
-		  {
-			  delete data;
-		  }
+			  DataTable(const std::wstring &name, Eigen::MatrixXf data);
 
-		  DataTable(Eigen::Matrix2cd *data);
+			  int getLength();
 
-		  DataTable(const std::wstring &name, Eigen::Matrix2cd *data);
+			  virtual int getDimension();
 
-		  int getLength();
+			  Eigen::MatrixXf getData();
 
-		  virtual int getDimension();
+			  std::wstring getName();
 
-		  Eigen::Matrix2cd *getData();
+			  virtual Eigen::VectorXf getRow(int i);
 
-		  std::wstring getName();
+			  virtual std::vector<std::wstring> getColumnNames();
 
-		  virtual std::vector<double> getRow(int i);
+			  virtual void setDefaultColumnNames();
 
-		  virtual std::vector<std::wstring> getColumnNames();
+			  virtual void setColumnNames(std::vector<std::wstring> &columnNames);
 
-		  virtual void setDefaultColumnNames();
+			  virtual std::vector<std::string> getRowIds();
 
-		  virtual void setColumnNames(std::vector<std::wstring> &columnNames);
+			  virtual void setDefaultRowIds();
 
-		  virtual std::vector<std::wstring> getRowIds();
+			  virtual void setRowIds(std::vector<std::string> &rowIds);
 
-		  virtual void setDefaultRowIds();
+			  virtual std::vector<double> getRowLabels();
 
-		  virtual void setRowIds(std::vector<std::wstring> &rowIds);
+			  virtual void setDefaultRowLabels();
 
-		  virtual std::vector<double> getRowLabels();
+			  virtual void setRowLabels(std::vector<double> &rowLabels);
 
-		  virtual void setDefaultRowLabels();
+			  virtual void setEntry(int i, int j, double d);
 
-		  virtual void setRowLabels(std::vector<double> &rowLabels) throw(ExecutionException);
-
-		}; // DataTable
-
+			}; // DataTable
 	}
 }
