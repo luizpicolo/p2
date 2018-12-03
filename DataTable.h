@@ -57,6 +57,8 @@ namespace cg
 
 			  virtual void setEntry(int i, int j, double d);
 
+			  float getEntry(int i, int j);
+
 			}; // DataTable
 	}
 }
