@@ -13,9 +13,8 @@ namespace cg
 		class DataTableReader : public Source<DataTable*>
 		{
 			public:
-				string pathname;
-				//DataTableReader(const std::wstring &pathname);
-				void setFilename(const std::wstring &pathname);
+				char* pathname;
+				void setFilename(char* pathname);
 				void execute() override;
 				static Reference<DataTableReader> New()
 				{
@@ -23,8 +22,6 @@ namespace cg
 				}
 
 			private:
-				//string pathname;
-				//static double parseStringToDouble(const std::wstring &s);
 		};
 	}
 }

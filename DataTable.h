@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vector>
-#include "exceptionhelper.h"
 #include "Eigen/Core" 
 
 namespace cg
