@@ -9,18 +9,8 @@ namespace cg
 
 		DataTable::DataTable(Eigen::MatrixXf data_)
 		{
-			//DataTable(L"Data Table " + ++count, data);
-			length = data_.rows(); // Metodo da biblioteca
-			dimension = data_.cols();  // Metodo da biblioteca
-			this->data = data_;
-		}
-
-		DataTable::DataTable(const std::wstring &name_, Eigen::MatrixXf data_)
-		{
-			name = name_;
-			length = data_.rows(); // Metodo da biblioteca
-			dimension = data_.cols();  // Metodo da biblioteca
-			//this->data = Eigen::MatrixXf::Zero(length, dimension);
+			length = (int) data_.rows(); // Metodo da biblioteca
+			dimension = (int) data_.cols();  // Metodo da biblioteca
 			this->data = data_;
 		}
 
@@ -132,7 +122,6 @@ namespace cg
 
 		void DataTable::setEntry(int i, int j, double d)
 		{
-			//data.row(i)(j) = (float) d;
 			data(i, j) = (float) d;
 		}
 
