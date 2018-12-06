@@ -1,7 +1,7 @@
 #include "GLPolyDataMapper.h"
 #include "DataTableReader.h"
 //#include "DataTableToPolyDataFilter.h"
-//#include "DataTableWriter"
+#include "DataTableWriter.h"
 #include "Lamp.h"
 #include "ProjectionFilter.h"
 #include "P2.h"
@@ -18,14 +18,14 @@ P2::initialize()
     auto reader = DataTableReader::New();
     auto projectionFilter = ProjectionFilter::New();
 //    projectionFilter->setProjection(Lamp::New());
-//    auto writer = DataTableWriter::New();
+    auto writer = DataTableWriter::New();
 
 	reader->setFilename((char*)"/Users/picolo/CPP/P2/caltech.data-NORM.data.txt");
-//    reader->update();
+    reader->update();
 //    projection->setInputConnection(reader->outputPort());
-//    writer->setFilename(...);
+    writer->setFilename((char*)"/Users/picolo/CPP/P2/caltech.data-NORM.data2.txt");
 //    writer->setInputConnection(projection->outputPort());
-//    writer->write();
+    writer->update();
 
 //    auto pointToPolyFilter = DataTableToPolyData::New();
 //    auto polyMapper = GLPolyDataMapper::New();
