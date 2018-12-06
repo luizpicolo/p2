@@ -1,8 +1,9 @@
 #include "GLPolyDataMapper.h"
 #include "DataTableReader.h"
-//#include "PointSetToPolyDataFilter.h"
-//#include "PointWriter.h"
-//#include "ProjectionFilter.h"
+//#include "DataTableToPolyDataFilter.h"
+//#include "DataTableWriter"
+#include "Lamp.h"
+#include "ProjectionFilter.h"
 #include "P2.h"
 
 void
@@ -15,11 +16,12 @@ P2::initialize()
     GLRenderWindow::initialize();
 
     auto reader = DataTableReader::New();
-//    auto projection = ProjectionFilter::New();
+    auto projectionFilter = ProjectionFilter::New();
+//    projectionFilter->setProjection(Lamp::New());
 //    auto writer = DataTableWriter::New();
 
 	reader->setFilename((char*)"/Users/picolo/CPP/P2/caltech.data-NORM.data.txt");
-	reader->update();
+//    reader->update();
 //    projection->setInputConnection(reader->outputPort());
 //    writer->setFilename(...);
 //    writer->setInputConnection(projection->outputPort());
