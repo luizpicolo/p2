@@ -28,7 +28,7 @@ P2::initialize()
     writer->setFilename((char*)"/Users/picolo/CPP/p2_git/output/caltech.data-NORM.data.txt");
     // writer->setInputConnection(projection->outputPort());
 	writer->setInputConnection(reader->outputPort());
-	writer->update();
+	writer->write();
 
     // auto pointToPolyFilter = DataTableToPolyData::New();
     // auto polyMapper = GLPolyDataMapper::New();
