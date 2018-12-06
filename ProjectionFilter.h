@@ -16,7 +16,7 @@ namespace cg
             
                 // projectionFilter->setProjection(Lamp::New());
                 // Ainda será adicionado o tipo
-                void setProjection(Lamp projection);
+                void setProjection(Projection* projection);
                 Eigen::MatrixXf project();
                 static Reference<ProjectionFilter> New()
                 {

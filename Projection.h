@@ -6,7 +6,7 @@ namespace cg
 {
 	namespace vis
 	{
-        class Projection : public Object
+        class Projection : public SharedObject
         {
 
         };
