@@ -16,23 +16,26 @@ P2::initialize()
     GLRenderWindow::initialize();
 
     auto reader = DataTableReader::New();
-    auto projectionFilter = ProjectionFilter::New();
-//    projectionFilter->setProjection(Lamp::New());
+    // auto projectionFilter = ProjectionFilter::New();
+    // projectionFilter->setProjection(Lamp::New());
     auto writer = DataTableWriter::New();
 
-	reader->setFilename((char*)"/Users/picolo/CPP/P2/caltech.data-NORM.data.txt");
+	reader->setFilename((char*)"/Users/picolo/CPP/p2_git/input/caltech.data-NORM.data.txt");
     reader->update();
-//    projection->setInputConnection(reader->outputPort());
-    writer->setFilename((char*)"/Users/picolo/CPP/P2/caltech.data-NORM.data2.txt");
-//    writer->setInputConnection(projection->outputPort());
-    writer->update();
+    
+    // projection->setInputConnection(reader->outputPort());
+    
+    writer->setFilename((char*)"/Users/picolo/CPP/p2_git/output/caltech.data-NORM.data.txt");
+    // writer->setInputConnection(projection->outputPort());
+	writer->setInputConnection(reader->outputPort());
+	writer->update();
 
-//    auto pointToPolyFilter = DataTableToPolyData::New();
-//    auto polyMapper = GLPolyDataMapper::New();
-//
-//    pointToPolyFilter->setInputConnection(projection->outputPort());
-//    polyMapper->setInputConnection(pointToPolyFilter->outputPort());
-//    scene()->addActor(new Actor{polyMapper});
+    // auto pointToPolyFilter = DataTableToPolyData::New();
+    // auto polyMapper = GLPolyDataMapper::New();
+
+    // pointToPolyFilter->setInputConnection(projection->outputPort());
+    // polyMapper->setInputConnection(pointToPolyFilter->outputPort());
+    // scene()->addActor(new Actor{polyMapper});
   }
   catch (const std::exception& e)
   {

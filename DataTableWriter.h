@@ -14,7 +14,6 @@ namespace cg
 		{
 		public:
 			void setFilename(char* pathname);
-            virtual void write() override;
 			static Reference<DataTableWriter> New()
 			{
 				return new DataTableWriter;
@@ -22,7 +21,7 @@ namespace cg
 
 		private:
 			char* pathname;
-			
+			void writeData() override;
 		};
 	}
 }

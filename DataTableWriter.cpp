@@ -14,18 +14,8 @@ namespace cg
 		{
 			pathname = pathname_;
 		}
-
-		double parseStringToDouble(string value) {
-
-			if (value == "\n" || value == "") {
-				cout << "Error: String empty or \\n - change for zero to debug tests";
-				return 0;
-			}
-
-			return stod(value);
-		}
-
-		void DataTableWriter::write()
+		
+		void DataTableWriter::writeData()
 		{
 			const char* DY = "DY";
 			const char* DELIMITED = ";";
@@ -34,38 +24,35 @@ namespace cg
 			int length, dimension;
 			ofstream dataFile(this->pathname);
 
+			cout << "\nCreating File to Save Data: " << this->pathname;
+
 			if (!dataFile.is_open())
                 //throw exception("Error: Unable to open file\n");
 
 			dataFile << DY << endl;
+		
+			DataTable *table = input();
+			ids = table->getRowIds();
+			labels = table->getRowLabels();
 
-			// Criar uma função para receber o dados que serão escritos no arquivo (igual a função pathname) ou usar através do SOURCE
-			//auto table = this->outputDataTable;
-			//ids = table.getRowIds();
-			//labels = table.getRowLabels;
+			length = table->getLength();
+			dataFile << length << endl;
 
-			//length = table.getLength()
-			length = 18; // TODO: Remover quando datable estiver compilando apenas para testes
-			dataFile << length << endl << endl;
-
-			//dimension = table.getDimension();
-			dimension = 2; // TODO: Remover quando datable estiver compilando apenas para testes
-			dataFile << dimension << endl;
+			dimension = table->getDimension();
+			dataFile << dimension << endl << endl;
 
 			for (int i = 0; i < length; i++) {
-				//dataFile << ids[i] << DELIMITED;
-				dataFile << "id" << i << DELIMITED; // TODO: Remover quando datable estiver compilando apenas para testes
+				dataFile << ids[i] << DELIMITED;
 
 				for (int j = 0; j < dimension; j++) {
-					//dataFile << table.getEntry(i, j) << DELIMITED;
-					dataFile << 5 << DELIMITED; // TODO: Remover quando datable estiver compilando apenas para testes
+					dataFile << table->getEntry(i, j) << DELIMITED;
 				}
 
-				//dataFile << labels[i] << endl;
-				dataFile << "label" << i << endl; // TODO: Remover quando datable estiver compilando apenas para testes
+				dataFile << labels[i] << endl;
 			}
 
 			dataFile.close();
-		}
+		} 
+		
 	}
 }
