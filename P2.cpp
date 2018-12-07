@@ -23,11 +23,11 @@ P2::initialize()
 	reader->setFilename((char*)"/Users/picolo/CPP/p2_git/input/caltech.data-NORM.data.txt");
     reader->update();
     
-    // projection->setInputConnection(reader->outputPort());
+    projectionFilter->setInputConnection(reader->outputPort());
     
     writer->setFilename((char*)"/Users/picolo/CPP/p2_git/output/caltech.data-NORM.data.txt");
-    // writer->setInputConnection(projection->outputPort());
-	writer->setInputConnection(reader->outputPort());
+    writer->setInputConnection(projectionFilter->outputPort());
+	// writer->setInputConnection(reader->outputPort());
 	writer->write();
 
     // auto pointToPolyFilter = DataTableToPolyData::New();
