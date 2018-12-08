@@ -25,7 +25,7 @@ namespace cg
 		  public:
 			  DataTable(Eigen::MatrixXf data);
 
-			  DataTable(const std::wstring &name, Eigen::MatrixXf data);
+			  //DataTable(const std::wstring &name, Eigen::MatrixXf data);
 
 			  int getLength();
 

@@ -3,6 +3,7 @@
 #include "DataTable.h"
 #include "Filter.h"
 #include "Lamp.h"
+#include "Dissimilarity.h"
 
 namespace cg
 {
@@ -11,13 +12,8 @@ namespace cg
         class ProjectionFilter : public Filter<DataTable, DataTable>
         {
             public:
-                // Ainda será adicionado o tipo
-                // void projection;
-            
-                // projectionFilter->setProjection(Lamp::New());
-                // Ainda será adicionado o tipo
-                void setProjection(Projection* projection);
                 Eigen::MatrixXf project();
+                void setProjection(Projection* projection);
                 static Reference<ProjectionFilter> New()
                 {
                     return new ProjectionFilter;

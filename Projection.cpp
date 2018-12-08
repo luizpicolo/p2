@@ -7,6 +7,9 @@ namespace cg
 {
 	namespace vis
 	{
-
+        int Projection::getDimension()
+        {
+            return dimension;
+        }
 	}
 }
