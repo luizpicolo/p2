@@ -1,9 +1,8 @@
 #pragma once
 
 #include "DataTable.h"
+#include "Projection.h"
 #include "Filter.h"
-#include "Lamp.h"
-#include "Dissimilarity.h"
 
 namespace cg
 {
@@ -11,9 +10,19 @@ namespace cg
 	{
         class ProjectionFilter : public Filter<DataTable, DataTable>
         {
+			private:
+				Reference<Projection> _projection;
             public:
-                Eigen::MatrixXf project();
-                void setProjection(Projection* projection);
+				void execute() override {
+					_projection->setInput(this->input());
+					_projection->project();
+					this->setOutput(_projection->getData());
+				}
+
+				void setProjection(Projection* projection) {
+					_projection = projection;
+				}
+
                 static Reference<ProjectionFilter> New()
                 {
                     return new ProjectionFilter;
