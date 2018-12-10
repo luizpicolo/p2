@@ -129,5 +129,9 @@ namespace cg
 		{
 			return data(i, j);
 		}
+		void DataTable::setRow(int i, Eigen::VectorXf row)
+		{
+			data.row(i) = row;
+		}
 	}
 }
