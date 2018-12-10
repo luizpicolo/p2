@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Projection.h"
+#include "RandomSampler.h"
 
 namespace cg
 {
@@ -8,6 +9,9 @@ namespace cg
 	{
         class Lamp : public Projection
         {
+			private:
+				Reference<Sampler> sampler;
+
             public:
                 static Reference<Lamp> New()
                 {

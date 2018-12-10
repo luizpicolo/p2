@@ -59,6 +59,8 @@ namespace cg
 
 			  float getEntry(int i, int j);
 
+			  virtual void setRow(int i, Eigen::VectorXf);
+
 			}; // DataTable
 	}
 }
