@@ -2,7 +2,7 @@
 
 #include <cmath>
 #include "Object.h"
-#include "Eigen\Core"
+#include "Eigen/Core"
 #include "DataTable.h"
 
 namespace cg {
