@@ -19,7 +19,7 @@ namespace cg {
 					for (int np = input->getLength(), count = 0; count < _sampleSize;) {
 						int index = distribution(generator);
 
-						if (indexes.find(index) != indexes.end)
+                        if (indexes.find(index) != indexes.end())
 							continue;
 
 						auto row = input->getRow(index);

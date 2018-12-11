@@ -1,6 +1,6 @@
 #include "GLPolyDataMapper.h"
 #include "DataTableReader.h"
-//#include "DataTableToPolyDataFilter.h"
+#include "DataTableToPolyDataFilter.h"
 #include "DataTableWriter.h"
 #include "Lamp.h"
 #include "ProjectionFilter.h"
@@ -30,12 +30,12 @@ P2::initialize()
 	// writer->setInputConnection(reader->outputPort());
 	writer->write();
 
-    // auto pointToPolyFilter = DataTableToPolyData::New();
-    // auto polyMapper = GLPolyDataMapper::New();
+    auto DataTableToPolyDataFilter = DataTableToPolyDataFilter::New();
+    auto polyMapper = GLPolyDataMapper::New();
 
-    // pointToPolyFilter->setInputConnection(projection->outputPort());
-    // polyMapper->setInputConnection(pointToPolyFilter->outputPort());
-    // scene()->addActor(new Actor{polyMapper});
+    DataTableToPolyDataFilter->setInputConnection(projectionFilter->outputPort());
+    polyMapper->setInputConnection(DataTableToPolyDataFilter->outputPort());
+    scene()->addActor(new Actor{polyMapper});
   }
   catch (const std::exception& e)
   {

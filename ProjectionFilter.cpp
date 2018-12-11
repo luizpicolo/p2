@@ -4,7 +4,7 @@ namespace cg
 {
 	namespace vis
 	{
-//        ProjectionFilter::execute()
+//        void ProjectionFilter::execute()
 //        {
 //
 //        }

@@ -17,6 +17,11 @@ namespace cg
                 {
                     return new Lamp;
                 }
+            
+                void project()
+                {
+                
+                }
         };
 	}
 }
