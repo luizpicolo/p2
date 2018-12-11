@@ -89,7 +89,7 @@ namespace cg
 
 			dataFile.close();
 
-			setOutput(table);
+			this->setOutput(table);
 		}
 	}
 }
