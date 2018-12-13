@@ -13,10 +13,20 @@ namespace cg
 				Reference<Sampler> sampler;
 
             public:
-                static Reference<Lamp> New()
+				Lamp(int dimension) :Projection(dimension) {
+				}
+
+				Lamp(DataTable* input, int dimension) :Projection(input, dimension) {
+				}
+
+                static Reference<Lamp> New(int dimension)
                 {
-                    return new Lamp;
+                    return new Lamp(dimension);
                 }
+
+				static Reference<Lamp> New(DataTable* input, int dimension) {
+					return new Lamp(input, dimension);
+				}
             
                 void project()
                 {

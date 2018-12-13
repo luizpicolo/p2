@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cmath>
 #include "Object.h"
 #include "Eigen/Core"
 #include "DataTable.h"
@@ -17,7 +16,7 @@ namespace cg {
 
 			public:
 				void setSampleSize(int size) {
-					_sampleSize = fmax(1, size);
+					_sampleSize = std::max(1, size);
 				}
 
 				void sample() {

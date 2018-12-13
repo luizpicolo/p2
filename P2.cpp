@@ -17,7 +17,7 @@ P2::initialize()
 
     auto reader = DataTableReader::New();
     auto projectionFilter = ProjectionFilter::New();
-    projectionFilter->setProjection(Lamp::New());
+    projectionFilter->setProjection(Lamp::New(2));
     auto writer = DataTableWriter::New();
 
 	reader->setFilename((char*)"/Users/picolo/CPP/p2_git/input/caltech.data-NORM.data.txt");
