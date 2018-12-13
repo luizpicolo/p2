@@ -2,6 +2,7 @@
 
 #include "Projection.h"
 #include "RandomSampler.h"
+#include "DataTable.h"
 
 namespace cg
 {
@@ -13,6 +14,11 @@ namespace cg
 				Reference<Sampler> sampler;
 
             public:
+                Lamp() : Projection(getDimension())
+                {
+                    
+                }
+            
                 static Reference<Lamp> New()
                 {
                     return new Lamp;
