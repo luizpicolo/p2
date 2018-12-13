@@ -16,7 +16,7 @@ namespace cg
 				void execute() override {
 					_projection->setInput(this->input());
 					_projection->project();
-					this->setOutput(_projection->getData());
+					this->setOutput(_projection->output());
 				}
 
 				void setProjection(Projection* projection) {

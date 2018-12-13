@@ -31,10 +31,6 @@ namespace cg
 				void setInput(DataTable* input) {
 					_input = input;
 				}
-				DataTable* getData() {
-					return _output;
-				}
-
                 DataTable* output() const
                 {
                     return _output;
