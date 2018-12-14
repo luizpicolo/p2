@@ -26,14 +26,15 @@ P2::initialize()
     projectionFilter->setInputConnection(reader->outputPort());
     
     writer->setFilename((char*)"/Users/picolo/CPP/p2_git/output/caltech.data-NORM.data.txt");
-    writer->setInputConnection(projectionFilter->outputPort());
-	// writer->setInputConnection(reader->outputPort());
+    // writer->setInputConnection(projectionFilter->outputPort());
+	writer->setInputConnection(reader->outputPort());
 	writer->write();
 
     auto DataTableToPolyDataFilter = DataTableToPolyDataFilter::New();
     auto polyMapper = GLPolyDataMapper::New();
 
-    DataTableToPolyDataFilter->setInputConnection(projectionFilter->outputPort());
+    // DataTableToPolyDataFilter->setInputConnection(projectionFilter->outputPort());
+    DataTableToPolyDataFilter->setInputConnection(reader->outputPort());
     polyMapper->setInputConnection(DataTableToPolyDataFilter->outputPort());
     scene()->addActor(new Actor{polyMapper});
   }
