@@ -15,6 +15,10 @@ namespace cg {
 				virtual Reference<DataTable> doSample() =0;
 
 			public:
+				void setInput(Reference<DataTable> in) {
+					input = in;
+				}
+
 				void setSampleSize(int size) {
 					_sampleSize = std::max(1, size);
 				}
