@@ -12,6 +12,15 @@ namespace cg
         {
 			private:
 				Reference<Sampler> sampler;
+				Reference<DataTable> sampledata = nullptr;
+				Reference<DataTable> sampleproj = nullptr;
+				const double epsilon = 1.0e-4;
+				float fracdelta = 8.0f;
+				int nriteractions = 100;
+				int samplesize = 0;
+
+				Reference<DataTable> getSampleData();
+				void projectSample();
 
             public:
 				Lamp(int dimension) :Projection(dimension) {
@@ -28,11 +37,34 @@ namespace cg
 				static Reference<Lamp> New(DataTable* input, int dimension) {
 					return new Lamp(input, dimension);
 				}
-            
-                void project()
-                {
-                
-                }
+
+				float getFractionDelta() {
+					return fracdelta;
+				}
+
+				void setFractionDelta(float fracdelta) {
+					this->fracdelta = fracdelta;
+				}
+
+				int getNumberIteractions() {
+					return nriteractions;
+				}
+
+				void setNumberIterations(int nriteractions) {
+					this->nriteractions = nriteractions;
+				}
+
+				int getSampleSize()
+				{
+					return samplesize;
+				}
+
+				void setSampleSize(int samplesize)
+				{
+					this->samplesize = samplesize;
+				}
+
+				void project() override;
         };
 	}
 }
