@@ -1,4 +1,7 @@
+#include <limits.h>
 #include "IDMAP.h"
+#include "FastMap.h"
+#include "ForceScheme.h"
 
 namespace cg {
 	namespace vis {
@@ -11,21 +14,19 @@ namespace cg {
 				for (int j = 0; j < length; j++)
 					dmat->setEntry(i, j, this->_dissimilarity->value(_input->getRow(i), _input->getRow(j)));
 
-			if (ini == InitializationType.FASTMAP)
-			{
-				FastMap fastmap = new FastMap(2, dmat);
-				fastmap.setInput(this.input);
-				fastmap.setDissimilarity(this.dissimilarity);
-				projection = fastmap.project();
+			if (ini == InitializationType::FASTMAP) {
+				FastMap* fastmap = new FastMap(2, dmat);
+				fastmap->setInput(this->_input);
+				fastmap->setDissimilarity(this->_dissimilarity);
+				fastmap->project();
+				projection = fastmap->output();
 
-				if (projection != null)
-				{
-					ForceScheme force = new ForceScheme(dimension, projection.getRowDimension());
-					double error = Double.MAX_VALUE;
+				if (projection != nullptr) {
+					Reference<ForceScheme> force = new ForceScheme(dimension, projection->getLength());
+					double error = std::numeric_limits<double>::max();
 
-					for (int i = 0; i < this.nriterations; i++)
-					{
-						error = force.iteration(dmat, projection);
+					for (int i = 0; i < this->nriterations; i++) {
+						error = force->iteration(dmat, projection->getlData());
 					}
 				}
 			}
