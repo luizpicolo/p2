@@ -21,6 +21,7 @@ namespace cg
 
 				Reference<DataTable> getSampleData();
 				void projectSample();
+				void createTransformation(Eigen::MatrixXf& projection, Eigen::MatrixXf& matrix, int begin, int end);
 
             public:
 				Lamp(int dimension) :Projection(dimension) {
