@@ -33,6 +33,8 @@ namespace cg
 
 			  Eigen::MatrixXf getData();
 
+			  Eigen::MatrixXf& getlData();
+
 			  std::wstring getName();
 
 			  virtual Eigen::VectorXf getRow(int i);
