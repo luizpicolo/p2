@@ -37,6 +37,11 @@ namespace cg {
 					return output;
 				}
 
+			public:
+				static Reference<RandomSampler> New() {
+					return new RandomSampler;
+				}
+
 		};
 	}
 }

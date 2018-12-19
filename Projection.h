@@ -30,6 +30,8 @@ namespace cg
 				}
 				void setInput(DataTable* input) {
 					_input = input;
+					this->length = _input->getLength();
+					this->dataDimension = _input->getDimension();
 				}
                 DataTable* output() const
                 {

@@ -29,6 +29,11 @@ namespace cg
 		  return data;
 		}
 
+		Eigen::MatrixXf& DataTable::getlData()
+		{
+			return data;
+		}
+
 		std::wstring DataTable::getName()
 		{
 		  return name;

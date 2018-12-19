@@ -11,7 +11,17 @@ namespace cg
         class Lamp : public Projection
         {
 			private:
-				Reference<Sampler> sampler;
+				Reference<Sampler> sampler = nullptr;
+				Reference<DataTable> sampledata = nullptr;
+				Reference<DataTable> sampleproj = nullptr;
+				const float epsilon = 1.0e-4;
+				float fracdelta = 8.0f;
+				int nriteractions = 100;
+				int samplesize = 0;
+
+				void getSampleData();
+				void projectSample();
+				void createTransformation(Eigen::MatrixXf& projection, Eigen::MatrixXf& matrix, int begin, int end);
 
             public:
 				Lamp(int dimension) :Projection(dimension) {
@@ -28,11 +38,38 @@ namespace cg
 				static Reference<Lamp> New(DataTable* input, int dimension) {
 					return new Lamp(input, dimension);
 				}
-            
-                void project()
-                {
-                
-                }
+
+				float getFractionDelta() {
+					return fracdelta;
+				}
+
+				void setFractionDelta(float fracdelta) {
+					this->fracdelta = fracdelta;
+				}
+
+				int getNumberIteractions() {
+					return nriteractions;
+				}
+
+				void setNumberIterations(int nriteractions) {
+					this->nriteractions = nriteractions;
+				}
+
+				int getSampleSize()
+				{
+					return samplesize;
+				}
+
+				void setSampleSize(int samplesize)
+				{
+					this->samplesize = samplesize;
+				}
+
+				void setSampler(Sampler* sam) {
+					sampler = sam;
+				}
+
+				void project() override;
         };
 	}
 }
