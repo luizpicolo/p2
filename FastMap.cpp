@@ -7,7 +7,7 @@ namespace cg {
 
 			while (currentDimension < this->dimension) {
 				int* lvchoosen = this->chooseDistantObjects(dmat);
-				double lvdistance = dmat->getEntry(lvchoosen[0], lvchoosen[1]);
+				float lvdistance = dmat->getEntry(lvchoosen[0], lvchoosen[1]);
 
 				 //if the distance between the pivots is 0, then set 0 for each instance for this dimension
 				if (lvdistance == 0) {
@@ -19,7 +19,7 @@ namespace cg {
 					//if the distance is not equal to 0, then
 					//instances iterator
 					for (int lvi = 0; lvi < dmat->getLength(); lvi++) {
-						double lvxi = (double)((std::pow(dmat->getEntry(lvchoosen[0], lvi), 2)
+						float lvxi = (float)((std::pow(dmat->getEntry(lvchoosen[0], lvi), 2)
 							+ std::pow(dmat->getEntry(lvchoosen[0], lvchoosen[1]), 2)
 							- std::pow(dmat->getEntry(lvi, lvchoosen[1]), 2))
 							/ (2 * dmat->getEntry(lvchoosen[0], lvchoosen[1])));
@@ -72,12 +72,12 @@ namespace cg {
 		}
 
 		void FastMap::normalize(Eigen::MatrixXf& result) {
-			int lvdimensions = result.cols();
-			int lvinstances = result.rows();
+			int lvdimensions = (int)result.cols();
+			int lvinstances = (int)result.rows();
 
 			//for normalization
-			double* lvlowrange = new double[lvdimensions];
-			double* lvhighrange = new double[lvdimensions];
+			float* lvlowrange = new float[lvdimensions];
+			float* lvhighrange = new float[lvdimensions];
 
 			//for each instance
 			for (int lvins = 0; lvins < lvinstances; lvins++) {
@@ -100,7 +100,7 @@ namespace cg {
 				//for each attribute
 				for (int lvfield = 0; lvfield < lvdimensions; lvfield++) {
 					if ((lvhighrange[lvfield] - lvlowrange[lvfield]) > 0.0) {
-						double res = (result(lvins, lvfield) - lvlowrange[lvfield]) /
+						float res = (result(lvins, lvfield) - lvlowrange[lvfield]) /
 							(lvhighrange[lvfield] - lvlowrange[lvfield]);
 						result(lvins, lvfield) = res;
 					} else {

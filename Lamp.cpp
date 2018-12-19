@@ -33,24 +33,24 @@ namespace cg
 
 		void Lamp::createTransformation(Eigen::MatrixXf& projection, Eigen::MatrixXf& matrix, int begin, int end) {
 			// dimensions
-			int d = matrix.cols();      // origin space: dimension
+			int d = (int)matrix.cols();      // origin space: dimension
 			int k = sampledata->getLength();    // sampling:  instances
 			int r = sampleproj->getDimension();  // projected: dimension
 
 			// scalars
-			double Wsum, aij;
-			double v00, v10, v01, v11;
-			double uj0, uj1, x, y, diff;
+			float Wsum, aij;
+			float v00, v10, v01, v11;
+			float uj0, uj1, x, y, diff;
 
 			// arrays 1d
-			double *W, *Wsqrt;
-			double *Psum, *Pstar;
-			double *Qsum, *Qstar;
+			float *W, *Wsqrt;
+			float *Psum, *Pstar;
+			float *Qsum, *Qstar;
 
 			Eigen::RowVectorXf X, P, Q;
 
-			Pstar = new double[d];
-			Qstar = new double[r];
+			Pstar = new float[d];
+			Qstar = new float[r];
 
 			Eigen::MatrixXf AtB = Eigen::MatrixXf::Zero(d,r);
 
@@ -64,10 +64,10 @@ namespace cg
 				//==============================================================
 				// STEP 1: Obtain W, Pstar and Qstar
 				//==============================================================
-				W = new double[k] {0};
-				Wsqrt = new double[k] {0};
-				Psum = new double[d] {0};
-				Qsum = new double[r] {0};
+				W = new float[k] {0};
+				Wsqrt = new float[k] {0};
+				Psum = new float[d] {0};
+				Qsum = new float[r] {0};
 				Wsum = 0;
 				bool jump = false;
 

@@ -10,22 +10,22 @@ namespace cg {
 	namespace vis {
 		class ForceScheme : public SharedObject {
 			private:
-				double fractionDelta;
+				float fractionDelta;
 				int* index;
-				const double EPSILON = 0.0000001f;
+				const float EPSILON = 0.0000001f;
 
 			public:
 				ForceScheme(int dimension, int numberPoints) {
 					this->fractionDelta = 8.0f;
 
 					//Create the indexes and shuffle them
-					std::vector<double> index_aux;
+					std::vector<int> index_aux;
 					for (int i = 0; i < numberPoints; i++) {
-						index_aux.push_back((double) i);
+						index_aux.push_back(i);
 					}
 
 					this->index = new int[numberPoints];
-					for (int ind = 0, j = 0; j < numberPoints; ind += index_aux.size() / 10, j++) {
+					for (int ind = 0, j = 0; j < numberPoints; ind += (int)index_aux.size() / 10, j++) {
 						if (ind >= index_aux.size()) {
 							ind = 0;
 						}
@@ -35,9 +35,9 @@ namespace cg {
 					}
 				}
 
-				double iteration(Reference<DistanceMatrix> dmat, Eigen::MatrixXf& proj) {
-					double error = 0.0;
-					int length = proj.rows();
+				float iteration(Reference<DistanceMatrix> dmat, Eigen::MatrixXf& proj) {
+					float error = 0.0;
+					int length = (int)proj.rows();
 					int x, y;
 
 					//for each instance
@@ -53,15 +53,15 @@ namespace cg {
 							}
 
 							//distance between projected instances
-							double x1x2 = (proj(instance2, 0) - proj(instance, 0));
-							double y1y2 = (proj(instance2, 1) - proj(instance, 1));
-							double dr2 = std::sqrt(x1x2 * x1x2 + y1y2 * y1y2);
+							float x1x2 = (proj(instance2, 0) - proj(instance, 0));
+							float y1y2 = (proj(instance2, 1) - proj(instance, 1));
+							float dr2 = std::sqrt(x1x2 * x1x2 + y1y2 * y1y2);
 
 							if (dr2 < EPSILON)
 								dr2 = EPSILON;
 
-							double drn = dmat->getEntry(instance, instance2);
-							double normdrn = (drn - dmat->getData().minCoeff(&x,&y));
+							float drn = dmat->getEntry(instance, instance2);
+							float normdrn = (drn - dmat->getData().minCoeff(&x,&y));
 							//(dmat.getMaxDistance() - dmat.getMinDistance());
 
 							float max, min;
@@ -72,14 +72,14 @@ namespace cg {
 							}
 
 							//Calculating the (fraction of) delta
-							double delta = normdrn - dr2;
+							float delta = normdrn - dr2;
 							delta *= std::abs(delta);
 							// delta = (float) Math.sqrt(Math.abs(delta));
 							delta /= this->fractionDelta;
 
 							error += std::abs(delta);
 
-							double aux = proj(instance2, 0);
+							float aux = proj(instance2, 0);
 							proj(instance2, 0) = aux + delta * (x1x2 / dr2);
 							aux = proj(instance2, 1);
 							proj(instance2, 1) = aux + delta * (y1y2 / dr2);

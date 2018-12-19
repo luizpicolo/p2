@@ -14,7 +14,7 @@ namespace cg
 				Reference<Sampler> sampler = nullptr;
 				Reference<DataTable> sampledata = nullptr;
 				Reference<DataTable> sampleproj = nullptr;
-				const double epsilon = 1.0e-4;
+				const float epsilon = 1.0e-4;
 				float fracdelta = 8.0f;
 				int nriteractions = 100;
 				int samplesize = 0;

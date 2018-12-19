@@ -23,7 +23,7 @@ namespace cg {
 
 				if (projection != nullptr) {
 					Reference<ForceScheme> force = new ForceScheme(dimension, projection->getLength());
-					double error = std::numeric_limits<double>::max();
+					float error = std::numeric_limits<float>::max();
 
 					for (int i = 0; i < this->nriterations; i++) {
 						error = force->iteration(dmat, projection->getlData());
