@@ -177,11 +177,17 @@ namespace cg
 			if (_input == nullptr) //Check if we have input set
 				throw std::runtime_error("Input not set");
 
+			puts("");
+			puts("Lamp initiated...");
+
+			puts("\tSampling the data...");
 			this->getSampleData(); //Sample the data
+
+			puts("\tProjecting the sample...");
 			this->projectSample(); //Project it
 
+			puts("\tProjecting...");
 			Eigen::MatrixXf proj_aux = Eigen::MatrixXf::Zero(_input->getLength(), dimension);
-
 			createTransformation(proj_aux, _input->getlData(), 0, _input->getLength() - 1);
 
 			//proj_aux = proj_aux * 10; //Scaling
