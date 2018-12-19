@@ -11,7 +11,7 @@ namespace cg
         class Lamp : public Projection
         {
 			private:
-				Reference<Sampler> sampler;
+				Reference<Sampler> sampler = nullptr;
 				Reference<DataTable> sampledata = nullptr;
 				Reference<DataTable> sampleproj = nullptr;
 				const double epsilon = 1.0e-4;
@@ -63,6 +63,10 @@ namespace cg
 				void setSampleSize(int samplesize)
 				{
 					this->samplesize = samplesize;
+				}
+
+				void setSampler(Sampler* sam) {
+					sampler = sam;
 				}
 
 				void project() override;
