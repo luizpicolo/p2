@@ -35,6 +35,16 @@ namespace cg
 			ids = table->getRowIds();
 			labels = table->getRowLabels();
 
+			if (ids.empty()) {
+				table->setDefaultRowIds();
+				ids = table->getRowIds();
+			}
+
+			if (labels.empty()) {
+				table->setDefaultRowLabels();
+				labels = table->getRowLabels();
+			}
+
 			length = table->getLength();
 			dataFile << length << endl;
 
