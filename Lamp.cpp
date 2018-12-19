@@ -8,7 +8,7 @@ namespace cg
 {
 	namespace vis
 	{
-		Reference<DataTable> Lamp::getSampleData() {
+		void Lamp::getSampleData() {
 			if (samplesize == 0) { //Samplesize cannot be 0, sqrt(length) is an acceptable value
 				samplesize = (int)std::sqrt(this->length);
 			}
@@ -17,7 +17,7 @@ namespace cg
 			this->sampler->setSampleSize(samplesize);
 			this->sampler->sample();
 
-			return this->sampler->getOutput();
+			this->sampledata = this->sampler->getOutput();
 		}
 
 		void Lamp::projectSample() {
@@ -177,15 +177,14 @@ namespace cg
 			if (_input == nullptr) //Check if we have input set
 				throw std::runtime_error("Input not set");
 
-			if (sampledata == nullptr) //Check if we have already sampled the data, if not sample it
-				sampledata = getSampleData();
-
-			if (sampleproj == nullptr)
-				this->projectSample();
+			this->getSampleData(); //Sample the data
+			this->projectSample(); //Project it
 
 			Eigen::MatrixXf proj_aux = Eigen::MatrixXf::Zero(_input->getLength(), dimension);
 
 			createTransformation(proj_aux, _input->getlData(), 0, _input->getLength() - 1);
+
+			//proj_aux = proj_aux * 10; //Scaling
 
 			_output = new DataTable(proj_aux);
 		}

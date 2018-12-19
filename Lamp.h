@@ -19,7 +19,7 @@ namespace cg
 				int nriteractions = 100;
 				int samplesize = 0;
 
-				Reference<DataTable> getSampleData();
+				void getSampleData();
 				void projectSample();
 				void createTransformation(Eigen::MatrixXf& projection, Eigen::MatrixXf& matrix, int begin, int end);
 
