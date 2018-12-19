@@ -15,7 +15,7 @@ namespace cg {
 					dmat->setEntry(i, j, this->_dissimilarity->value(_input->getRow(i), _input->getRow(j)));
 
 			if (ini == InitializationType::FASTMAP) {
-				FastMap* fastmap = new FastMap(2, dmat);
+				FastMap* fastmap = new FastMap(dimension, dmat);
 				fastmap->setInput(this->_input);
 				fastmap->setDissimilarity(this->_dissimilarity);
 				fastmap->project();
@@ -30,6 +30,8 @@ namespace cg {
 					}
 				}
 			}
+
+			_output = projection;
 		}
 	}
 }
