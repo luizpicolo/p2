@@ -9,8 +9,8 @@ namespace cg {
 		class Sampler : public SharedObject {
 			protected:
 				int _sampleSize = 0;
-				Reference<DataTable> input;
-				Reference<DataTable> output;
+				Reference<DataTable> input = nullptr;
+				Reference<DataTable> output = nullptr;
 
 				virtual Reference<DataTable> doSample() =0;
 
