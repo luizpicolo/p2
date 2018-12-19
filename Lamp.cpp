@@ -64,10 +64,10 @@ namespace cg
 				//==============================================================
 				// STEP 1: Obtain W, Pstar and Qstar
 				//==============================================================
-				W = new double[k];
-				Wsqrt = new double[k];
-				Psum = new double[d];
-				Qsum = new double[r];
+				W = new double[k] {0};
+				Wsqrt = new double[k] {0};
+				Psum = new double[d] {0};
+				Qsum = new double[r] {0};
 				Wsum = 0;
 				bool jump = false;
 
@@ -183,7 +183,7 @@ namespace cg
 			if (sampleproj == nullptr)
 				this->projectSample();
 
-			Eigen::MatrixXf proj_aux = Eigen::MatrixXf::Zero(_input->getLength(), 2);
+			Eigen::MatrixXf proj_aux = Eigen::MatrixXf::Zero(_input->getLength(), dimension);
 
 			createTransformation(proj_aux, _input->getlData(), 0, _input->getLength() - 1);
 
